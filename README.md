@@ -1,7 +1,8 @@
 # BlackOut
 BlackOut plugin for SCP SL
 
-# Description: The plugin allows you to turn off the lights whenever you want, but only once. And you can also configure cassie or turn it off altogether.
+# Description: 
+The plugin allows you to turn off the lights whenever you want, but only once. And you can also configure cassie or turn it off altogether.
 
 # Default config:
 ```yaml
