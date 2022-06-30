@@ -16,12 +16,12 @@ BlackOut:
   # ↓Indicates whether cassie will be played when the lights are turned off. (false = will not. true = will be)
   off_cassie: true
   # Specifies in which seconds a random time will be selected
-↓Minimum value
+  # ↓Minimum value
   min_blackout_start_time: 60
   # ↓Maximum value
   max_blackout_start_time: 300
   # Indicates how many seconds the light is turned off
-↓Minimum value
+  # ↓Minimum value
   min_blackout_time: 30
   # ↓Maximum value
   max_blackout_time: 30
