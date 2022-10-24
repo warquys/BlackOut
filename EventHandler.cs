@@ -58,7 +58,7 @@ namespace BlackOut
             yield return Timing.WaitForSeconds(UnityEngine.Random.Range(_config.Min_Blackout_Start_Time, _config.Max_Blackout_Start_Time));
 
         rep:
-            var time = UnityEngine.Random.Range(_config.Min_Blackout_Time, _config.Max_Blackout_Time);
+            var time = TimeForNextBlackOut();
             
             foreach (var zone in BlackoutAffectedZone)
                 Map.TurnOffAllLights(time, zone);
@@ -72,9 +72,15 @@ namespace BlackOut
             }
             else yield return Timing.WaitForSeconds(time);
 
-            yield return Timing.WaitForSeconds(UnityEngine.Random.Range(_config.Min_Blackout_Time, _config.Max_Blackout_Time));
+            yield return TimeForNextBlackOut();
 
             goto rep; //Yea old school
+
+            float TimeForNextBlackOut()
+            {
+                var randomTime = UnityEngine.Random.Range(_config.Min_Blackout_Start_Time, _config.Max_Blackout_Start_Time);
+                return Timing.WaitForSeconds(randomTime);
+            }
         }
         #endregion
 
