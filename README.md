@@ -8,7 +8,7 @@ The plugin turns off the lights for you randomly (you can configure it).
 ```yaml
 BlackOut:
 # ↓Indicates whether the plugin is enabled or not
-  is_enabled: true
+  IsEnabled: true
   # ↓Indicates whether the subtitles for cassie will be shown or not
   subtitles: true
   # ↓Specifies which cassie will be used when the light is turned off or on
