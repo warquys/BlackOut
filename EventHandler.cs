@@ -55,7 +55,7 @@ namespace BlackOut
 
         private IEnumerator<float> BlackoutCoroutine()
         {
-            yield return UnityEngine.Random.Range(_config.Min_Blackout_Start_Time, _config.Max_Blackout_Start_Time);
+            yield return Timing.WaitForSeconds(UnityEngine.Random.Range(_config.Min_Blackout_Start_Time, _config.Max_Blackout_Start_Time));
 
         rep:
             var time = UnityEngine.Random.Range(_config.Min_Blackout_Time, _config.Max_Blackout_Time);
@@ -66,13 +66,13 @@ namespace BlackOut
             if (_config.Cassie_On)
             {
                 Cassie.Message(_config.Cassie_OffLight, false, true, _config.Subtitles);
-                yield return time;
+                yield return Timing.WaitForSeconds(time);
                 Cassie.Message(_config.Cassie_OnLight, false, true, _config.Subtitles);
 
             }
-            else yield return time;
+            else yield return Timing.WaitForSeconds(time);
 
-            yield return UnityEngine.Random.Range(_config.Min_Blackout_Time, _config.Max_Blackout_Time);
+            yield return Timing.WaitForSeconds(UnityEngine.Random.Range(_config.Min_Blackout_Time, _config.Max_Blackout_Time));
 
             goto rep; //Yea old school
         }
