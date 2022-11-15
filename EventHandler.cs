@@ -55,32 +55,32 @@ namespace BlackOut
 
         private IEnumerator<float> BlackoutCoroutine()
         {
-            yield return Timing.WaitForSeconds(UnityEngine.Random.Range(_config.Min_Blackout_Start_Time, _config.Max_Blackout_Start_Time));
-
-        rep:
-            var time = TimeForNextBlackOut();
-            
-            foreach (var zone in BlackoutAffectedZone)
-                Map.TurnOffAllLights(time, zone);
-            
-            if (_config.Cassie_On)
-            {
-                Cassie.Message(_config.Cassie_OffLight, false, true, _config.Subtitles);
-                yield return Timing.WaitForSeconds(time);
-                Cassie.Message(_config.Cassie_OnLight, false, true, _config.Subtitles);
-
-            }
-            else yield return Timing.WaitForSeconds(time);
-
             yield return TimeForNextBlackOut();
 
-            goto rep; //Yea old school
-
-            float TimeForNextBlackOut()
+            while (true)
             {
-                var randomTime = UnityEngine.Random.Range(_config.Min_Blackout_Start_Time, _config.Max_Blackout_Start_Time);
-                return Timing.WaitForSeconds(randomTime);
+                var time = UnityEngine.Random.Range(_config.Min_Blackout_Time, _config.Max_Blackout_Time);
+            
+                foreach (var zone in BlackoutAffectedZone)
+                    Map.TurnOffAllLights(time, zone);
+            
+                if (_config.Cassie_On)
+                {
+                    Cassie.Message(_config.Cassie_OffLight, false, true, _config.Subtitles);
+                    yield return Timing.WaitForSeconds(time);
+                    Cassie.Message(_config.Cassie_OnLight, false, true, _config.Subtitles);
+
+                }
+                else yield return Timing.WaitForSeconds(time);
+
+                yield return TimeForNextBlackOut();
             }
+        }
+
+        private float TimeForNextBlackOut()
+        {
+            var randomTime = UnityEngine.Random.Range(_config.Min_Blackout_Start_Time, _config.Max_Blackout_Start_Time);
+            return Timing.WaitForSeconds(randomTime);
         }
         #endregion
 

@@ -34,7 +34,7 @@ namespace BlackOut
         public int Min_Blackout_Time { get; set; } = 30;
         
         [Description("↓Maximum value")]
-        public int Max_Blackout_Time { get; set; } = 30;
+        public int Max_Blackout_Time { get; set; } = 35;
 
     }
 }
